@@ -1,6 +1,6 @@
 import logging
 
-def Impedancia(delta: list[complex]) -> list[complex]:
+def Impedancia(delta):
 
     logger = logging.getLogger(__name__)
 

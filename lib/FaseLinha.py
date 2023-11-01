@@ -3,7 +3,7 @@ from lib.PhaseToComplex import PhaseToComplex
 from lib.ComplexToPhase import ComplexToPhase
 import logging
 
-def FaseLinha(delta: list[complex]) -> list[complex]:
+def FaseLinha(delta):
     logger = logging.getLogger(__name__)
 
     var = PhaseToComplex(sqrt(3), 30)

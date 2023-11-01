@@ -17,40 +17,51 @@ logging.basicConfig(
 def main():
     logger = logging.getLogger(__name__)
 
-    Vref = 110 + 0j
+    z2 = ComplexToPhase(complex(20,-8.4)/(1.05*100))
+    logger.info(z2)
+    # z2 = PhaseToComplex(31.11, 33.16)
+    # logger.info(z2)
+    # z2 = PhaseToComplex(36.28, 10.76)
+    # logger.info(z2)
 
-    delta = TensaoFase(Vref)
-    logger.info(f"Tensões de fase:\n\t{delta}")
+    # Vref = 380 + 0j
+
+    # TFase = TensaoFase(Vref)
+    # logger.info(f"Tensões de fase:\n\t{TFase}")
     
-    linha = FaseLinha(delta)
-    logger.info(f"Tensões de linha:\n\t{linha}")
+    # TFase[1] = 0j
 
-    Zy = DeltaEstrela.Impedancia([ 16 -28j, 14.8 -6.4j, 14+8j ])
-    logger.info(f"Impedância transformada para estrela: \n\t{Zy}")
+    # linha = FaseLinha(TFase)
+    # logger.info(f"Tensões de linha:\n\t{linha}")
 
-    Zd = EstrelaDelta.Impedancia(Zy)
-    logger.info(f"Impedância transformada para delta: \n\t{Zd}")
+    # Zy = DeltaEstrela.Impedancia([ PhaseToComplex(1.358, 40.281), 
+    #                                PhaseToComplex(1.711, 433.665), 
+    #                                PhaseToComplex(1.221, 1.774) ])
+    # logger.info(f"Impedância transformada para estrela: \n\t{Zy}")
 
-    CorrLinha = Correntes(linha, Zy)
-    logger.info(f"Corrente de linha do sistema: \n\t{CorrLinha}")
+    # # Zd = EstrelaDelta.Impedancia(Zy)
+    # # logger.info(f"Impedância transformada para delta: \n\t{Zd}")
+
+    # CorrLinha = Correntes(linha, Zy)
+    # logger.info(f"Corrente de linha do sistema: \n\t{CorrLinha}")
   
-    # Vno calculo lembrar de por o menos
-    Vno = TensaoNeutro(linha, Zy)
-    logger.info(f"Tensão de neutro do sistema: \n\t{Vno}")
+    # # Vno calculo lembrar de por o menos
+    # Vno = TensaoNeutro(linha, Zy)
+    # logger.info(f"Tensão de neutro do sistema: \n\t{Vno}")
 
-    Vfase=[]
-    for i in range(len(linha)):
-        Vfase.append( sum([linha[i], Vno]))
-    logger.info(f"Tensoes de fase na carga: \n\t{Vfase}")
+    # Vfase=[]
+    # for i in range(len(linha)):
+    #     Vfase.append( sum([linha[i], Vno]))
+    # logger.info(f"Tensoes de fase na carga: \n\t{Vfase}")
 
-    CorrCorrigida = Correntes(Vfase, Zy)
-    logger.info(f"Corrente de linha real do sistema: \n\t{CorrCorrigida}")
+    # CorrCorrigida = Correntes(Vfase, Zy)
+    # logger.info(f"Corrente de linha real do sistema: \n\t{CorrCorrigida}")
 
-    Pot = [ (Vfase[0] * CorrCorrigida[0]), (Vfase[1] * CorrCorrigida[1]), (Vfase[2] * CorrCorrigida[2])]
-    logger.info(f"Potência por linha do sistema: \n\t{Pot}")
+    # Pot = [ (Vfase[0] * CorrCorrigida[0]), (Vfase[1] * CorrCorrigida[1]), (Vfase[2] * CorrCorrigida[2])]
+    # logger.info(f"Potência por linha do sistema: \n\t{Pot}")
 
-    PotTot = sum(Pot)
-    logger.info(f"Potência total do sistema: \n\t{PotTot}")
+    # PotTot = sum(Pot)
+    # logger.info(f"Potência total do sistema: \n\t{PotTot}")
 
 
     

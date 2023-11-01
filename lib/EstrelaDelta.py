@@ -1,6 +1,6 @@
 import logging
 
-def Impedancia(estrela: list[complex]) -> list[complex]:
+def Impedancia(estrela):
     logger = logging.getLogger(__name__)
 
     somaPonderada = (estrela[0] * estrela[1]) + (estrela[1] * estrela[2]) + (estrela[0] * estrela[2])

@@ -3,7 +3,7 @@ from lib.Correntes import Correntes
 
 import logging
 
-def TensaoNeutro(tensao: list[complex], impedancias: list[complex]) -> complex:
+def TensaoNeutro(tensao, impedancias) -> complex:
     logger = logging.getLogger(__name__)
 
     correntes = Correntes(tensao, impedancias)

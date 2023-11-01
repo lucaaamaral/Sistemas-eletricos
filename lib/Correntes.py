@@ -2,7 +2,7 @@ from math import pi as pi
 
 import logging
 
-def Correntes(tensao:list[complex], impedancias:list[complex]) -> list[complex]:
+def Correntes(tensao, impedancias):
     logger = logging.getLogger(__name__)
     
     if (len(tensao) != len(impedancias)):

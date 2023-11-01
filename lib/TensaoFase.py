@@ -3,7 +3,7 @@ from lib.PhaseToComplex import PhaseToComplex
 from math import pi as pi
 import logging
 
-def TensaoFase (tensaoRef: complex, numFases: int=3) -> list[complex]:
+def TensaoFase (tensaoRef: complex, numFases: int=3):
     
     logger = logging.getLogger(__name__)
 

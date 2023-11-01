@@ -36,16 +36,16 @@ class TestBase(unittest.TestCase):
         ans = ( round(ans[0], 11), round(ans[1], 11) )
         self.assertEqual(ans, (100, 120))
 
-        ans = ComplexToPhase(PhaseToComplex(100, 240))
+        ans = ComplexToPhase(PhaseToComplex(100, -120))
         ans = ( round(ans[0], 11), round(ans[1], 11) )
-        self.assertEqual(ans, (100, 240))
+        self.assertEqual(ans, (100, -120))
 
     def test_2_TensaoFase(self):
 
-        ref = [PhaseToComplex(100, 0), PhaseToComplex(100, 120), PhaseToComplex(100, 240)]
+        ref = [PhaseToComplex(100, 0), PhaseToComplex(100, 120), PhaseToComplex(100, -120)]
         self.assertEqual(TensaoFase(ref[0], 3), ref)
 
-        ref = [PhaseToComplex(100, 30), PhaseToComplex(100, 150), PhaseToComplex(100, 270)]
+        ref = [PhaseToComplex(100, 30), PhaseToComplex(100, 150), PhaseToComplex(100, -90)]
         self.assertEqual(TensaoFase(ref[0], 3), ref)
 
     def test_3_FaseLinha(self):

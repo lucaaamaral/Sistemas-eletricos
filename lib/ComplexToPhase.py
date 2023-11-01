@@ -10,6 +10,7 @@ def ComplexToPhase(val:complex) -> (float, float):
 
     if (val.real<0):
         ang+=180
-
+    if (ang>180):
+        ang-=360
     logger.debug(f"Converting {val} to {mod}/_{ang}")
     return mod, ang
