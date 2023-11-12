@@ -6,6 +6,7 @@ from lib.Correntes import Correntes
 import lib.DeltaEstrela as DeltaEstrela
 import lib.EstrelaDelta as EstrelaDelta
 from lib.TensaoNeutro import TensaoNeutro
+from math import sqrt
 
 import logging
 
@@ -16,9 +17,46 @@ logging.basicConfig(
 
 def main():
     logger = logging.getLogger(__name__)
+    # Sa_ = (20 - 8.4j)/100
+    # Sb_ = -(10 - 4j)/100
+    # Sc_ = -(20 - 10.8j)/100
+    # Sd_ = (0)
+    # Se_ = (15 - 6j)/100
 
-    z2 = ComplexToPhase(complex(20,-8.4)/(1.05*100))
-    logger.info(z2)
+
+    # Va : complex = 1.05 + 0j
+    # Vb : complex = ( (Sa_ / Va.conjugate()) - ( - 4.38j * Va ) ) / 4.38j
+    # Vc : complex = ( (Sb_ / Vb.conjugate()) - ( 4.38j * Va ) - ( - 17.07j * Vb ) ) / 12.7j 
+    # Vd : complex = ( (Sc_ / Vc.conjugate()) - ( 12.7j * Vb ) - ( - 28.57j * Vc ) ) / 15.87j 
+    # Ve : complex = ( (Sd_ / Vd.conjugate()) - ( 15.87j * Vc ) - ( - 18.37j * Vd ) ) / 2.5j 
+    
+    # logger.info(ComplexToPhase(Va))
+    # logger.info(ComplexToPhase(Vb))
+    # logger.info(ComplexToPhase(Vc))
+    # logger.info(ComplexToPhase(Vd))
+    # logger.info(ComplexToPhase(Ve))
+
+
+    # logger.info(ComplexToPhase( (100000/(sqrt(3)*138))*(Vb - Vc)/(0.25j*60/190.44) ) )
+
+    Zm1 = PhaseToComplex(2.32, 36.87)
+    Zm2 = PhaseToComplex(4.30, 36.87)
+    Zm3 = PhaseToComplex(5.87, 31.79)
+    Zm4 = PhaseToComplex(8.07, 31.41)
+
+    Za = (Zm1*Zm2) / (Zm1+Zm2)
+    Za += (0.1 + 0.02j) # + (0.5 + 0.1j)
+
+    Zb = (Zm1*Zm3) / (Zm1+Zm3)
+    Zb += (0.1 + 0.02j) # + (0.5 + 0.1j)
+
+    Zc = (Zm1*Zm4) / (Zm1+Zm4)
+    Zc += (0.1 + 0.02j) # + (0.5 + 0.1j)
+
+    print(ComplexToPhase(Za))
+    print(ComplexToPhase(Zb))
+    print(ComplexToPhase(Zc))
+
     # z2 = PhaseToComplex(31.11, 33.16)
     # logger.info(z2)
     # z2 = PhaseToComplex(36.28, 10.76)
